@@ -1,0 +1,17 @@
+### use this file with REST CLIENT  Vscode extension
+###
+GET https://jsonplaceholder.typicode.com/posts
+
+###
+GET https://jsonplaceholder.typicode.com/posts?_page=2
+
+###
+GET https://jsonplaceholder.typicode.com/posts?_start=5&_end=7
+###
+GET https://jsonplaceholder.typicode.com/posts?_start=0&_limit=5
+
+###
+GET https://jsonplaceholder.typicode.com/todos
+###
+GET https://jsonplaceholder.typicode.com/posts/1
+
