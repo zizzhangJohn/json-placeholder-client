@@ -42,9 +42,8 @@ export default function PostsBoard({ }) {
                         md: "1fr 1fr 1fr"
                     },
                     gridTemplateRows: {
-                        xs: "repeat(12, 1fr)",
-                        sm: "repeat(6, 1fr)",
-                        md: "repeat(4, 1fr)"
+                        xs: "minmax(100px, 1fr)",
+                        lg: "repeat(4, 1fr)"
                     },
                     gridGap: "0.5rem",
                 }}
