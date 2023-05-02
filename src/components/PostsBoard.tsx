@@ -8,7 +8,7 @@ export default function PostsBoard({ }) {
     const [searchParams, setSearch] = useSearchParams();
     const page = Number(searchParams.get('page'));
     const postsPerPage = 12;
-    const startIndex = page !== 0 ? (page - 1) * postsPerPage : 1;
+    const startIndex = page !== 0 ? (page - 1) * postsPerPage : 0;
     const { data, isFetching, error, isError } = useGetPostsQuery({ start: startIndex, limit: postsPerPage });
     const maxPage = !isFetching ? Math.ceil((data!.totalCount) / postsPerPage) : 0;
 
