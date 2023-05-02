@@ -1,10 +1,12 @@
 import { Button, Card, CardActions, CardContent, Typography } from "@mui/material"
 import { Post } from "../features/posts/posts-api-slice"
+import { useNavigate } from "react-router-dom"
 
 type PostCardProps = {
     post: Post
 }
 export default function PostCard({ post }: PostCardProps) {
+    const navigate = useNavigate();
 
     const truncateTitle = (title: string) => {
         return title.length > 60 ? title.substring(0, 60) + "..." : title;
@@ -44,7 +46,7 @@ export default function PostCard({ post }: PostCardProps) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={() => window.open(`/post/${post.id}`)}>Read More</Button>
+                <Button size="small" onClick={() => navigate(`/post/${post.id}`)}>Read More</Button>
             </CardActions>
         </Card>
     )

@@ -1,10 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetPostsByIdQuery } from "../features/posts/posts-api-slice";
 import AlertBox from "../components/AlertBox";
-import { Box, CircularProgress, Container, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Container, IconButton, Stack, Typography } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export default function PostPage() {
+    const navigate = useNavigate();
+
     const params = useParams();
     const postId = Number(params.postId);
     const { data: post, isFetching, error, isError } = useGetPostsByIdQuery(postId);
@@ -30,23 +33,41 @@ export default function PostPage() {
 
     return (
         <Container>
+            {/* mobile top bar*/}
             <Box
                 sx={{
                     display: { xs: "flex", md: "none" },
+                    justifyContent: "space-between",
                     borderTop: "1px solid",
                     borderBottom: "1px solid",
-                    marginBottom: 2
+                    marginBottom: 2,
+                    py: 1
                 }}
             >
-                <AccountCircleIcon
-                    sx={{
-                        width: "3rem",
-                        height: "3rem",
-                    }}
-                />
-                <Typography sx={{ mt: 0.85, ml: 1, textAlign: "center" }} color="text.secondary" >
-                    {`user${post?.userId}`}
-                </Typography>
+                <Box display="flex">
+                    <AccountCircleIcon
+                        sx={{
+                            width: "3.5rem",
+                            height: "3.5rem",
+                        }}
+                    />
+                    <Typography sx={{ mt: 0.85, ml: 1, textAlign: "center" }} color="text.secondary" >
+                        {`user${post?.userId}`}
+                    </Typography>
+                </Box>
+                <IconButton onClick={() => navigate(-1)}>
+                    <ExitToAppIcon
+                        sx={{
+                            cursor: "pointer",
+                            ':hover': {
+                                color: "primary.main"
+                            },
+                            alignSelf: "center",
+                            width: "2.5rem",
+                            height: "2.5rem",
+                        }}
+                    />
+                </IconButton>
             </Box>
 
             <Box
@@ -61,22 +82,35 @@ export default function PostPage() {
                 >
                     {post?.title}
                 </Typography>
+
+                {/* Desktop side bar */}
                 <Stack
                     sx={{
                         alignItems: "center",
                         display: {
                             xs: "none",
-                            md: "block"
+                            md: "flex"
                         }
                     }}
                 >
                     <AccountCircleIcon sx={{
-                        width: "4rem",
-                        height: "4rem",
+                        width: "3.5rem",
+                        height: "3.5rem",
                     }} />
-                    <Typography sx={{ mb: 1.5, textAlign: "center" }} color="text.secondary" >
+                    <Typography sx={{ textAlign: "center" }} color="text.secondary" >
                         {`user${post?.userId}`}
                     </Typography>
+                    <IconButton sx={{ mt: 0 }} onClick={() => navigate(-1)}>
+                        <ExitToAppIcon
+                            sx={{
+                                cursor: "pointer",
+                                ':hover': {
+                                    color: "primary.main"
+                                }
+                            }}
+                            fontSize="large"
+                        />
+                    </IconButton>
                 </Stack>
             </Box>
             <Typography
