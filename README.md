@@ -6,8 +6,9 @@
 
 · Use TypeScript
 
-Deploy at https://fancy-haupia-7ce3cf.netlify.app/
+· Use Jest and @testing-library/react for unit test (in progress)
 
+Deploy at https://fancy-haupia-7ce3cf.netlify.app/
 
 ## Usage
 
