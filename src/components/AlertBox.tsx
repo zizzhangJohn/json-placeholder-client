@@ -1,5 +1,4 @@
 import { Alert, Box } from '@mui/material'
-import "./alert.css"
 interface AlertBoxProps {
     message: string;
 }
