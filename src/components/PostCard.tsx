@@ -9,11 +9,13 @@ export default function PostCard({ post }: PostCardProps) {
     const navigate = useNavigate();
 
     const truncateTitle = (title: string) => {
-        return title.length > 60 ? title.substring(0, 60) + "..." : title;
+        const maxLen = 60;
+        return title.length > maxLen ? title.substring(0, 60).trim() + "..." : title;
     }
 
     const bodyPreview = (body: string) => {
-        return body.substring(0, 80) + "...";
+        const maxLen = 80;
+        return body.length > maxLen ? body.substring(0, 80).trim() + "..." : body;
     }
 
     return (
