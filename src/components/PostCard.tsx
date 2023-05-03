@@ -35,7 +35,7 @@ export default function PostCard({ post }: PostCardProps) {
                     justifyContent: "space-between",
                 }}
             >
-                <Typography variant="subtitle1" component="div" textTransform={"uppercase"}
+                <Typography data-testid="postCard-title" variant="subtitle1" component="div" textTransform={"uppercase"}
                     fontWeight='fontWeightMedium'
                 >
                     {truncateTitle(post.title)}
