@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
-import { Outlet} from "react-router-dom";
+import PostsBoard from "../components/PostsBoard";
 
 export default function HomePage() {
     return (
         <>
-            <Typography
+            <Typography 
                 align="center"
                 color="text.primary"
                 gutterBottom
@@ -12,7 +12,7 @@ export default function HomePage() {
             >
                 Posts Website
             </Typography>
-            <Outlet />
+            <PostsBoard />
         </>
     )
 }

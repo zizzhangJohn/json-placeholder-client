@@ -2,18 +2,27 @@ import { useGetPostsQuery } from "../features/posts/posts-api-slice";
 import { Box, CircularProgress, Container, Pagination, useMediaQuery, useTheme } from "@mui/material";
 import PostCard from "./PostCard";
 import AlertBox from "./AlertBox";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function PostsBoard({ }) {
     const [searchParams, setSearch] = useSearchParams();
-    const page = Number(searchParams.get('page'));
+    const navigate = useNavigate();
+
+
+    const page = searchParams.get('page')
+        ? Number(searchParams.get('page')) : 1;
     const postsPerPage = 12;
-    const startIndex = page !== 0 ? (page - 1) * postsPerPage : 0;
+    const startIndex = (page - 1) * postsPerPage;
     const { data, isFetching, error, isError } = useGetPostsQuery({ start: startIndex, limit: postsPerPage });
     const maxPage = !isFetching ? Math.ceil((data!.totalCount) / postsPerPage) : 0;
 
     const handlePageChange = (_: React.ChangeEvent<unknown>, pageNumber: number) => {
-        setSearch({ page: pageNumber.toString() })
+        if (pageNumber === 1) {
+            navigate("/");
+        }
+        else {
+            setSearch({ page: pageNumber.toString() })
+        }
     }
 
     const theme = useTheme();
@@ -29,7 +38,7 @@ export default function PostsBoard({ }) {
     }
 
     if (data?.posts.length === 0) {
-        return (<AlertBox message="There is nothing here, go back pls" />)
+        return (<AlertBox message="There is no post on this page, go back please" />)
     }
     return (
         <Container>
