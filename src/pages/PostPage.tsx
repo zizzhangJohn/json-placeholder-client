@@ -40,6 +40,7 @@ export default function PostPage() {
                     justifyContent: "space-between",
                     borderTop: "1px solid",
                     borderBottom: "1px solid",
+                    marginTop: 2,
                     marginBottom: 2,
                     py: 1
                 }}
@@ -71,7 +72,7 @@ export default function PostPage() {
             </Box>
 
             <Box
-                sx={{ display: "flex", justifyContent: "space-between" }}
+                sx={{ display: "flex", justifyContent: "space-between", marginTop: 2 }}
             >
                 <Typography
                     align="left"
