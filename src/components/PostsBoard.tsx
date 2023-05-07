@@ -15,7 +15,6 @@ export default function PostsBoard({ }) {
     const startIndex = (page - 1) * postsPerPage;
     const { data, isFetching, error, isError } = useGetPostsQuery({ start: startIndex, limit: postsPerPage });
     const maxPage = !isFetching ? Math.ceil((data!.totalCount) / postsPerPage) : 0;
-
     const handlePageChange = (_: React.ChangeEvent<unknown>, pageNumber: number) => {
         if (pageNumber === 1) {
             navigate("/");
@@ -29,7 +28,7 @@ export default function PostsBoard({ }) {
     const lessThanSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     if (isError) {
-        if (import.meta.env.DEV) {
+        if (process.env.DEV) {
             console.log(error)
         }
         return (
@@ -55,7 +54,7 @@ export default function PostsBoard({ }) {
                 }}
 
             >
-                {isFetching ? <CircularProgress sx={
+                {isFetching ? <CircularProgress data-testid="postBoard-spinner" sx={
                     {
                         position: "fixed",
                         left: "50%",
@@ -63,7 +62,7 @@ export default function PostsBoard({ }) {
                         transform: "translate(-50%, -50%)"
                     }
                 } /> :
-                    data?.posts.map((post, index) => (
+                    data!.posts.map((post, index) => (
                         <PostCard post={post} key={index} />
                     ))
                 }

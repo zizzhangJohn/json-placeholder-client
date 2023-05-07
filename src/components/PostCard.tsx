@@ -19,7 +19,7 @@ export default function PostCard({ post }: PostCardProps) {
     }
 
     return (
-        <Card sx={{
+        <Card data-testid="postCard" sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",

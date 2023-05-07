@@ -24,7 +24,7 @@ export default function PostPage() {
     }
 
     if (isError) {
-        if (import.meta.env.DEV) {
+        if (process.env.DEV) {
             console.log(error)
         }
         return (<AlertBox

@@ -8,8 +8,9 @@ export interface Post {
 }
 export const postsApiSlice = createApi({
   reducerPath: "postsApi",
+  keepUnusedDataFor: process.env.NODE_ENV === 'test' ? 0 : 60,
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_BASE_URL,
+    baseUrl: process.env.VITE_API_BASE_URL,
   }),
   endpoints: (builder) => ({
     // <returnType, agrumentType>
